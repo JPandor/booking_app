@@ -1,8 +1,10 @@
 <?php
 
-$hotels = file_get_contents('data.json');
+//getting json data
+$json = file_get_contents('data.json');
 $hotels = json_decode($hotels);
 
+//getting form information
 $user_hotel = $_POST['hotel'];
 $first_name= $_POST['first_name'];
 $last_name= $_POST['last_name'];
@@ -11,26 +13,76 @@ $amount_days= $_POST['amount_days'];
 $check_in= $_POST['check_in'];
 $check_out = $_POST['check_out'];
 
-// $hotel_arr = [];
-// foreach ($hotels as $value){
-//     $hot = (array) $value;
-//     array_push($hotel_arr, $hot);
-// }
-// var_dump($hotel_arr);
-// $index = array_search('hilton', $hotel_arr);
+//converting objects into an array
+$hotel_arr = [];
+foreach ($hotels as $value){
+    $hot = (array) $value;
+    array_push($hotel_arr, $hot);
+}
 
-// echo $index;
+//getting the index of user hotel
+$key = array_search($user_hotel, array_column($hotel_arr, 'name'));
+//getting price 
+$price = $hotel_arr[$key]['rate'] * $amount_days;
+//getting amenities
+$features = $hotel_arr[$key]['features'];
 
-echo array_search($user_hotel, array_column($hotels, 'name'));
-// $price = $hotels[]->rate * $amount_days;
-
+//writing out the details
 echo "<h1>Hello $first_name $last_name</h1>";
 
 echo "These are your entered details:" . "<br>";
 
-echo "Email: $email <br> Hotel:" . ucfirst($user_hotel) . "<br> Check-in: $check_in <br> Check-out: $check_out <br> Amount of days: $amount_days"; 
+echo "Email: $email <br> Hotel:" . $user_hotel . "<br> Check-in: $check_in <br> Check-out: $check_out <br> Amount of days: $amount_days <br>"; 
 
-echo "<h3>Your price for $amount_days is $price";
+echo $user_hotel . " has the following features: " . $features;
+
+echo "<h3>Your price for $amount_days night/s is R$price.00</h3>";
+
+$compare;
+
+switch ($user_hotel){
+    case "Hilton": 
+        $compare = "Conrad";
+        break;
+    case "Conrad": 
+        $compare = "Hilton";
+        break;
+    case "The Palace": 
+        $compare = "Marriott";
+        break;  
+    case "Marriott": 
+        $compare = "The Palace";
+        break;
+    case "Durban Spa": 
+        $compare = "Grand Orchid Guesthouse";
+        break; 
+    case "Grand Orchid Guesthouse": 
+        $compare = "Durban Spa";
+        break;
+    case "Kruger Park Lodge": 
+        $compare = "Ngwenya Lodge";
+        break; 
+    case "Ngwenya Lodge": 
+        $compare = "Kruger Park Lodge";
+        break; 
+    case "Cabana Beach": 
+        $compare = "Southern Sun";
+        break; 
+    case "Southern Sun": 
+        $compare = "Cabana Beach";
+        break; 
+
+}
+
+$compare_key = array_search($compare, array_column($hotel_arr, 'name'));
+//getting price 
+$price = $hotel_arr[$key]['rate'] * $amount_days;
+//getting amenities
+$features = $hotel_arr[$key]['features'];
+
+
+
+
 
 // class UserDetails {
 //     public $first_name;
@@ -56,6 +108,7 @@ echo "<h3>Your price for $amount_days is $price";
 
 //     }
 // }
+?>
 
 
 

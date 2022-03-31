@@ -11,12 +11,13 @@ $hotels = json_decode($hotels);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3"></script>
     <link href='styles.css'>
     <title>Book Your Hotel</title>
 </head>
 <body>
     <h1>Book hotels at the cheapest prices</h1>
-    <form action='compare.php' method='post'>
+    <form action='booking.php' method='post'>
         <label for='first_name'>First Name</label>
         <input type='text' id='first_name' name='first_name' required>
 
@@ -37,30 +38,32 @@ $hotels = json_decode($hotels);
 
         <label for='hotel'>Hotel</label>
         <select id="hotel" name="hotel" required>
-            <option value="hilton" name='hilton'>Hilton</option>
-            <option value="conrad" name='conrad'>Conrad</option>
-            <option value="grand orchid" name='grand orchid'>Grand Orchid</option>
-            <option value="cabana beach" name='cabana beach'>Cabana Beach</option>
-            <option value="ngwenya lodge" name='ngwenya lodge'>Ngwenya Lodge</option>
-            <option value="kruger park lodge" name='kruger park lodge'>Kruger Park Lodge</option>
-            <option value="marriott hotel" name='marriott hotel'>Marriott</option>
-            <option value="southern sun" name='southern sun'>Southern Sun</option>
-            <option value="durban spa" name='durban spa'>Durban Spa</option>
-            <option value="the palace" name='the palace'>The Palace</option>
+            <option value="Hilton">Hilton</option>
+            <option value="Conrad">Conrad</option>
+            <option value="Grand Orchid">Grand Orchid</option>
+            <option value="Cabana Beach">Cabana Beach</option>
+            <option value="Ngwenya Lodge">Ngwenya Lodge</option>
+            <option value="Kruger Park Lodge">Kruger Park Lodge</option>
+            <option value="Marriott">Marriott</option>
+            <option value="Southern Sun">Southern Sun</option>
+            <option value="Durban Spa">Durban Spa</option>
+            <option value="The Palace">The Palace</option>
         </select>
 
         <label for='compare'>Compare</label>
         <input type='submit' id='compare' name='compare'>
     </form>
 
-    <div>
-        <?php
-         foreach ($hotels as $key => $array){
-            foreach($array as $value){
-                echo $value . "<br>";
-            }
-        }
-?>
+    <div id='app'>
+        <ul>
+            <li v-for='(hotel, index) in hotel_arr' :key='index'>
+                <img v-bind:src='hotel[index].image'>
+                <h4> {{ hotel[index].name }}</h4>
+                <p> {{ hotel[index].rate }} </p>
+                <p> {{ hotel[index].features }} </p>
+            </li>
+        </ul>
     </div>
+    <script src='script.js'></script>
 </body>
 </html>

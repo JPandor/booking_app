@@ -2,51 +2,61 @@
     {
         "name": "Hilton",
         "rate": 1250,
-        "features": "Pool, bar, in-room dining, cleaning service, laundromat."
+        "features": "Pool, bar, in-room dining, cleaning service, laundromat.",
+        "image": "images/hilton.png"
     },
     {
         "name": "Conrad",
         "rate": 1500,
-        "features": "Pool, bar, in-room dining, cleaning service, laundromat."
+        "features": "Pool, bar, in-room dining, cleaning service, laundromat.",
+        "image": "images/conrad.png"
     },
     {
         "name": "Cabana Beach",
         "rate": 1100,
-        "features": "Pool, bar, cleaning service, kid-friendly."
+        "features": "Pool, bar, cleaning service, kid-friendly.",
+        "image": "images/cabana.png"
     },
     {
-        "name": "Marriott Hotel",
+        "name": "Marriott",
         "rate": 1700,
-        "features": "Pool, bar, in-room dining, cleaning service, laundromat."
+        "features": "Pool, bar, in-room dining, cleaning service, laundromat.",
+        "image": "images/marriott.png"
     },
     {
         "name": "Southern Sun",
-        "rate": 950,
-        "features": "Pool, bar, cleaning service, laundromat, kid-friendly."
+        "rate": 1200,
+        "features": "Pool, bar, cleaning service, laundromat, kid-friendly.",
+        "image": "images/southern_sun.png"
     },
     {
         "name": "Grand Orchid Guesthouse",
         "rate": 700,
-        "features": "Pool, cleaning service, self-catering."
+        "features": "Pool, cleaning service, self-catering.",
+        "image": "images/grand_orchid.png"
     },
     {
         "name": "Durban Spa",
         "rate": 500,
-        "features": "Pool, cleaning service, self-catering."
+        "features": "Pool, cleaning service, self-catering.",
+        "image": "images/durban_spa.png"
     },
     {
         "name": "The Palace",
         "rate": 1000,
-        "features": "Pool, bar, in-room dining, cleaning service."
+        "features": "Pool, bar, in-room dining, cleaning service.",
+        "image": "images/palace.png"
     },
     {
         "name": "Kruger Park Lodge",
         "rate": 1450,
-        "features": "Pool, cleaning service, restuarant, kid-friendly."
+        "features": "Pool, cleaning service, restuarant, kid-friendly.",
+        "image": "images/kruger.png"
     },
     {
         "name": "Ngwenya Lodge",
         "rate": 1350,
-        "features": "Pool, restuarant, cleaning service, laundromat, kid-friendly."
+        "features": "Pool, restuarant, cleaning service, laundromat, kid-friendly.",
+        "image": "images/ngwenya.png"
     }
 ]
