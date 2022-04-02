@@ -11,15 +11,66 @@ $hotels = json_decode($hotels);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='styles.css'>
     <script src="https://unpkg.com/vue@3"></script>
-    <link href='styles.css' rel='stylesheet'>
     <title>Book Your Hotel</title>
+    <style>
+        body {
+            /* background-image: url('images/background.jpg'); */
+            background: linear-gradient(to top, #99CDD6, #D84846);
+}
+
+img {
+    width: 250px;
+    height: 200px;
+    border: black solid 3px;
+    border-radius: 12px;
+}
+
+.scrolling-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+ul {
+    list-style-type: none;
+}
+.media-body{
+    max-width: 250px;
+    background-color: white;
+    padding: 3px;
+    border: black solid 3px;
+    border-radius: 12px;
+}
+input{
+    min-width: 98%;
+    border-radius: 12px;
+    min-height: 40px;
+}
+select{
+    min-width: 98%;
+    justify-content: center;
+    border: black solid 2px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    min-height: 40px;
+}
+form {
+    border: none;
+    font-weight: bold;
+    font-size: 25px;
+}
+li{
+    margin: 10px;
+}
+    </style>
 </head>
 <body>
     
         <h1>Book hotels at the cheapest prices</h1>
-    <main id='container'>
-        <div class='flex'>
+    <main>
+        <div>
             <form action='booking.php' method='post'>
                 <label for='first_name'>First Name</label>
                 <input type='text' id='first_name' name='first_name' required>
@@ -46,19 +97,24 @@ $hotels = json_decode($hotels);
                     <option value="Durban Spa">Durban Spa</option>
                     <option value="The Palace">The Palace</option>
                 </select>
-                <label for='compare'>Compare</label>
-                <input type='submit' id='compare' name='compare'>
+                <label for='compare'></label>
+                <input type='submit' id='compare' name='compare' value='Compare'>
             </form>
         </div>
-        <div id='app' class='flex'>
+        <div id='app'>
+            <h2>Check out our best hotels!</h2>
             <ul>
                 <li v-for='(hotel, index) in hotel_arr' :key='index'>
-                    <ul>
-                        <li v-for='item in hotel' class='media-box'>
-                            <img v-bind:src='item.image'>
-                            <h4> {{ item.name }}</h4>
-                            <p> {{ item.rate }} </p>
-                            <p> {{ item.features }} </p>
+                    <ul class='scrolling-list'>
+                        <li v-for='item in hotel' class='media-card'>
+                            <div class='media-head'>
+                                <img v-bind:src='item.image' max-width='250px' max-height='200px'>
+                            </div>
+                            <div class='media-body'>
+                                <h4> {{ item.name }}</h4>
+                                <p> R{{ item.rate }}.00 per night </p>
+                                <p> {{ item.features }} </p>
+                            </div>
                         </li>
                     </ul>
                 </li>
