@@ -14,57 +14,6 @@ $hotels = json_decode($hotels);
     <link rel='stylesheet' href='styles.css'>
     <script src="https://unpkg.com/vue@3"></script>
     <title>Book Your Hotel</title>
-    <style>
-        body {
-            /* background-image: url('images/background.jpg'); */
-            background: linear-gradient(to top, #99CDD6, #D84846);
-}
-
-img {
-    width: 250px;
-    height: 200px;
-    border: black solid 3px;
-    border-radius: 12px;
-}
-
-.scrolling-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-ul {
-    list-style-type: none;
-}
-.media-body{
-    max-width: 250px;
-    background-color: white;
-    padding: 3px;
-    border: black solid 3px;
-    border-radius: 12px;
-}
-input{
-    min-width: 98%;
-    border-radius: 12px;
-    min-height: 40px;
-}
-select{
-    min-width: 98%;
-    justify-content: center;
-    border: black solid 2px;
-    border-radius: 12px;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    min-height: 40px;
-}
-form {
-    border: none;
-    font-weight: bold;
-    font-size: 25px;
-}
-li{
-    margin: 10px;
-}
-    </style>
 </head>
 <body>
     
