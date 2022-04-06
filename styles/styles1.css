@@ -1,0 +1,52 @@
+body {
+    background-image: url('../images/blue_bg.jpg');
+    font-size: large;
+}
+
+.hotel-card {
+    width: 50%;
+    display: inline-block;
+}
+
+img {
+    width: 250px;
+    height: 200px;
+    border: black solid 2px;
+    border-radius: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+select {
+    display: block;
+    width: 98%;
+    min-height: 30px;
+    margin: auto;
+    border-radius: 12px;
+    border: 2px solid #4C8994;
+    margin-bottom: 10px;
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 1%;
+}
+
+input[type = submit]{
+    width: 98%;
+    min-height: 30px;
+    margin: auto;
+    border-radius: 12px;
+    border: 2px solid #4C8994;
+}
+
+input[type = submit]:hover {
+    background-color: #ccc;
+    color: black;
+    transition: 0.5s ease-in;
+}
+
+.info {
+    margin: 1%;
+}

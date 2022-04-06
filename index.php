@@ -1,19 +1,12 @@
-<?php
-
-$hotels = file_get_contents('data.json');
-$hotels = json_decode($hotels);
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='styles.css'>
+    <link rel='stylesheet' href='styles/styles.css'>
     <script src="https://unpkg.com/vue@3"></script>
-    <title>Book Your Hotel</title>
+    <title>Good Booking</title>
 </head>
 <body>
     
@@ -33,7 +26,7 @@ $hotels = json_decode($hotels);
                 <input type='date' id='check_in' name='check_in' required>
                 <label for='check-out'>Check-Out Date</label>
                 <input type='date' id='check_out' name='check_out' required>
-                <label for='hotel'>Hotel</label>
+                <label for='hotel'>Hotel</label><br>
                 <select id="hotel" name="hotel" required>
                     <option value="Hilton">Hilton</option>
                     <option value="Conrad">Conrad</option>

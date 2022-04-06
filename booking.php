@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles1.css">
     <title>Booking</title>
 </head>
 <body>
     
-</body>
-</html>
+
 
 <?php 
-
+session_start();
 //get user details and process them
 class User {
     public $user_hotel;
@@ -35,9 +35,9 @@ class User {
         $this->check_in = $check_in;
         $this->check_out = $check_out;
         $this->amount_days = $amount_days;
-        echo "<h1>Hello " .  $this->first_name . " " . $this->last_name . "</h1>";
+        echo "<div class='info'><h1>Hello " .  $this->first_name . " " . $this->last_name . "</h1>";
         echo "These are your entered details:" . "<br>";
-        echo "Email: " . $this->email . "<br> Hotel: " . $this->user_hotel . "<br> Check-in: " . $this->check_in . "<br> Check-out: " . $this->check_out . "<br> Amount of days: " . $this->amount_days ."<br>"; 
+        echo "Email: " . $this->email . "<br> Hotel: " . $this->user_hotel . "<br> Check-in: " . $this->check_in . "<br> Check-out: " . $this->check_out . "<br> Amount of days: " . $this->amount_days ."<br></div>"; 
         
     }
 
@@ -67,8 +67,10 @@ class User {
         $name = $this->hotel_arr[$this->key]['name'];
 
         //displaying the data
-        echo "<div class='hotel-card'>" . $name . " has the following features: " . $features;
-        echo "<h3>Your price for " . $this->amount_days . " night/s is R" . $price . ".00</h3> </div>";
+        
+        echo "<div class='hotel-card'> <img src='$image' alt='hotel picture' width='250px' height='200px'> <br>";
+        echo $name . " has the following features: " . $features;
+        echo "<h3>Your price for " . $this->amount_days . " night/s is R" . $price . ".00</h3> <br></div>";
     }
 
     public function compare(){
@@ -84,13 +86,18 @@ class User {
             
     }
     public function book (){
+        $_SESSION['first_name'] = $this->first_name;
+        $_SESSION['last_name'] = $this->last_name;
+        $_SESSION['email'] = $this->email;
+        $_SESSION['amount_days'] = $this->amount_days;
+        $_SESSION['check_in'] = $this->check_in;
+        $_SESSION['check_out'] = $this->check_out;
         echo "<form action='email.php' method='get'>
+        <label for='hotel'>Choose your hotel</label><br>
         <select id='hotel' name='hotel' required>
-        <option value='$this->user_hotel'>Hilton</option>
-        <option value='$this->compare_name'>Conrad</option>
+        <option value='$this->user_hotel'>$this->user_hotel</option>
+        <option value='$this->compare_name'>$this->compare_name</option>
         </select>
-        <input type='hidden' name='email' value='$this->email'>
-        <input type='hidden' name='amoint_days' value='$this->amount_days'>
         <label for='book'></label>
                 <input type='submit' id='submit' name='submit'>
         </form>";
@@ -111,6 +118,9 @@ $user1->getHotelDeets($user1->compare_name);
 $user1->book();
 
 ?>
+
+</body>
+</html>
 
 
 
