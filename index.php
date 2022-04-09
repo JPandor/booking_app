@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='styles/styles.css'>
+    <link rel='stylesheet' href='styles/styles.css' type="text/css">
     <script src="https://unpkg.com/vue@3"></script>
-    <title>Good Booking</title>
+    <title>Booking</title>
 </head>
 <body>
     
-        <h1>Book hotels at the cheapest prices</h1>
+        <h1>Book Hotels At The <span class='underline'>Cheapest</span> Prices!</h1>
     <main>
         <div>
             <form action='booking.php' method='post'>
@@ -44,7 +44,7 @@
             </form>
         </div>
         <div id='app'>
-            <h2>Check out our best hotels!</h2>
+            <h1 id="heading">Check Out <span class="underline">Our</span> Best Hotels!</h1>
             <ul>
                 <li v-for='(hotel, index) in hotel_arr' :key='index'>
                     <ul class='scrolling-list'>

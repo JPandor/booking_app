@@ -25,7 +25,11 @@ class User {
     public $hotel_arr = [];
     public $key;
     public $compare_key;
-    public $compare_name;
+    public $compare_hotel;
+    public $name;
+    public $image;
+    public $features;
+    public $price;
 
     public function __construct($user_hotel, $first_name, $last_name, $email, $check_in, $check_out, $amount_days){
         $this->user_hotel = $user_hotel;
@@ -35,16 +39,13 @@ class User {
         $this->check_in = $check_in;
         $this->check_out = $check_out;
         $this->amount_days = $amount_days;
-        echo "<div class='info'><h1>Hello " .  $this->first_name . " " . $this->last_name . "</h1>";
-        echo "These are your entered details:" . "<br>";
-        echo "Email: " . $this->email . "<br> Hotel: " . $this->user_hotel . "<br> Check-in: " . $this->check_in . "<br> Check-out: " . $this->check_out . "<br> Amount of days: " . $this->amount_days ."<br></div>"; 
-        
     }
 
     public function getHotelArray(){
         //getting json data
         $json_data = file_get_contents('data.json');
         $json_data = json_decode($json_data);
+
         //converting json objects into an array
         foreach ($json_data as $value){
             $hotel = (array) $value;
@@ -60,29 +61,28 @@ class User {
         //get the key of users choice
         $this->key =  array_search($search, array_column($this->hotel_arr, 'name'));
         //get price of total amount of nights
-        $price = $this->hotel_arr[$this->key]['rate'] * $this->amount_days;
+        $this->price = $this->hotel_arr[$this->key]['rate'] * $this->amount_days;
         //get features and image
-        $features = $this->hotel_arr[$this->key]['features'];
-        $image = $this->hotel_arr[$this->key]['image'];
-        $name = $this->hotel_arr[$this->key]['name'];
-
-        //displaying the data
-        
-        echo "<div class='hotel-card'> <img src='$image' alt='hotel picture' width='250px' height='200px'> <br>";
-        echo $name . " has the following features: " . $features;
-        echo "<h3>Your price for " . $this->amount_days . " night/s is R" . $price . ".00</h3> <br></div>";
+        $this->features = $this->hotel_arr[$this->key]['features'];
+        $this->image = $this->hotel_arr[$this->key]['image'];
+        $this->name = $this->hotel_arr[$this->key]['name'];
     }
 
     public function compare(){
-
-            if ($this->key == 9){
-                $this->compare_key = $this->key - 1;
-                $this->compare_name = $this->hotel_arr[$this->compare_key]['name'];
+        $count = 0;
+        foreach ($this->hotel_arr as $value){
+            $count = $count + 1;
+        }
+        $key_count = $count - 2;
+        $count = $count - 1;
+    
+            if ($this->key == $count){
+                $this->compare_key = $key_count;
+                $this->compare_hotel = $this->hotel_arr[$this->compare_key]['name'];
             }else {
                 $this->compare_key = $this->key + 1; 
-                $this->compare_name = $this->hotel_arr[$this->compare_key]['name'];
+                $this->compare_hotel = $this->hotel_arr[$this->compare_key]['name'];
             }
-            echo $count;
             
     }
     public function book (){
@@ -92,15 +92,6 @@ class User {
         $_SESSION['amount_days'] = $this->amount_days;
         $_SESSION['check_in'] = $this->check_in;
         $_SESSION['check_out'] = $this->check_out;
-        echo "<form action='email.php' method='get'>
-        <label for='hotel'>Choose your hotel</label><br>
-        <select id='hotel' name='hotel' required>
-        <option value='$this->user_hotel'>$this->user_hotel</option>
-        <option value='$this->compare_name'>$this->compare_name</option>
-        </select>
-        <label for='book'></label>
-                <input type='submit' id='submit' name='submit'>
-        </form>";
     }
     
 }
@@ -110,14 +101,77 @@ class User {
 //instantiate user class
 $user1 = new User ($_POST['hotel'], $_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['check_in'], $_POST['check_out'], $_POST['amount_days']);
 
-//run method from class
+
+?>
+<div id="info">
+    <h1>Hello <?php echo $user1->first_name . " " . $user1->last_name?> </h1>
+    <p>These are your entered details: </p>
+    <ul>
+        <li> Email: <?php echo $user1->email ?></li>
+        <li> Hotel: <?php echo $user1->user_hotel ?></li>
+        <li> Check-in: <?php echo $user1->check_in ?></li>
+        <li> Check-out: <?php echo $user1->check_out ?></li>
+        <li> Total nights: <?php echo $user1->amount_days ?></li>
+    </ul>
+    <h3>We've found the best hotels for you based off your search. Compare these 2 hotels and make your pick!</h3>
+</div>
+
+<?php
+
 $user1->getHotelArray();
+
 $user1->getHotelDeets($user1->user_hotel);
+
+?> 
+<div class='container'>
+    <div class='media-card'>
+        <div class='media-head'>
+            <img src='<?php echo $user1->image?>' width='250px' height='200px'>
+        </div>
+        <div class='media-body'>
+            <h2> <?php echo $user1->name?> </h2>
+            <p> <?php echo $user1->name?> has the following features: </p>
+            <p> <?php echo $user1->features?> </p>
+            <h3>Your price for <?php echo $user1->amount_days?> night/s is <?php echo $user1->price?></h3>
+        </div>
+    </div>
+
+<?php
+
 $user1->compare();
-$user1->getHotelDeets($user1->compare_name);
+
+$user1->getHotelDeets($user1->compare_hotel);
+
+?>
+
+    <div class='media-card'>
+        <div class='media-head'>
+            <img src='<?php echo $user1->image?>' max-width='250px' max-height='200px'>
+        </div>
+        <div class='media-body'>
+            <h2> <?php echo $user1->name?> </h2>
+            <p> <?php echo $user1->name?> has the following features: </p>
+            <p> <?php echo $user1->features?> </p>
+            <h3>Your price for <?php echo $user1->amount_days?> night/s is <?php echo $user1->price?></h3>
+        </div>
+    </div>
+</div>
+<?php
+
+
 $user1->book();
 
 ?>
+
+<form action='email.php' method='get'>
+        <label for='hotel'>Choose your hotel</label><br>
+        <select id='hotel' name='hotel' required>
+        <option value='<?php echo $user1->user_hotel?>'><?php echo $user1->user_hotel?></option>
+        <option value='<?php echo $user1->compare_hotel?>'><?php echo $user1->compare_hotel?></option>
+        </select>
+        <label for='book'></label>
+                <input type='submit' id='submit' name='submit'>
+        </form>
 
 </body>
 </html>

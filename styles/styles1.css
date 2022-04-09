@@ -1,11 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
+
 body {
     background-image: url('../images/blue_bg.jpg');
     font-size: large;
+    margin-left: 5%;
+    margin-right: 6%;
+    font-family: 'Luxurious Roman', cursive;
 }
 
-.hotel-card {
+h1 {
+    text-align: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.media-card {
     width: 50%;
-    display: inline-block;
+    text-align: center;
+    align-items: center;
+}
+
+
+.media-body{
+    max-width: 400px;
+    background-color: white;
+    padding: 3px;
+    border: black solid 2px;
+    border-radius: 12px;
+    margin: auto;
 }
 
 img {
@@ -13,32 +40,43 @@ img {
     height: 200px;
     border: black solid 2px;
     border-radius: 12px;
-    margin-left: auto;
-    margin-right: auto;
+}
+
+form{
+    background-color: white;
+    font-size: large;
+    border-radius: 12px;
+    padding: 1%;
+    box-shadow: 5px 10px 8px #888888;
+    margin-left: 5%;
+    margin-right: 6%;
+    text-align: start;
+    font-weight: bold;
+    margin-top: 3%;
 }
 
 select {
     display: block;
-    width: 98%;
-    min-height: 30px;
+    width: 100%;
+    min-height: 35px;
     margin: auto;
     border-radius: 12px;
     border: 2px solid #4C8994;
+    margin-bottom: 1%;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
-label {
-    font-size: 20px;
-    font-weight: bold;
-    margin-left: 1%;
-}
-
-input[type = submit]{
-    width: 98%;
+input[type = submit] {
+    margin-top: 30px;
+    min-height: 35px;
+    width: 100%;
     min-height: 30px;
     margin: auto;
     border-radius: 12px;
     border: 2px solid #4C8994;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 input[type = submit]:hover {
@@ -47,6 +85,13 @@ input[type = submit]:hover {
     transition: 0.5s ease-in;
 }
 
-.info {
-    margin: 1%;
+#info {
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3%;
+}
+
+li {
+    list-style-type: none;
 }
