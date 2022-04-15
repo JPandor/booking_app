@@ -1,0 +1,102 @@
+body {
+    background-image: url('../images/blue_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    margin-top: 3%;
+}
+
+h1 {
+    padding-top: 3%;
+    padding-bottom: 0.5%;
+    font-size: 2.5rem;
+}
+
+ul {
+    list-style-type: none;
+}
+#container{
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+img {
+    height: 380px;
+}
+
+form {
+    background-color: white;
+    font-size: large;
+    border-radius: 5px;
+    padding: 2%;
+    box-shadow: 5px 10px 8px #888888;
+    margin-left: 12%;
+    margin-right: 12%;
+    margin-bottom: 5%;
+    margin-top: 6%;
+    text-align: start;
+}
+
+h3 {
+    margin-top: 6%;
+    margin-bottom: 3%;
+}
+
+li {
+    font-size: 16px;
+}
+
+hr {
+    height: 2px;
+    margin-bottom: 1%;
+}
+
+#info {
+    font-size: x-large;
+    width: 40%;
+    margin: auto;
+}
+
+.hotel-card {
+    width: 45%;
+}
+
+h3 {
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+@media screen and (max-width: 1400px) {
+    #info {
+        width: 80%;
+    }
+
+    img {
+        height: 30vh;
+    }
+}
+
+
+@media screen and (max-width: 1100px) {
+    img {
+        height: 25vh;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+    img {
+        height: auto;
+        width: 70%;
+    }
+    #container{
+        display: flex;
+        flex-direction: column;
+    }
+    form {
+        margin-bottom: 10%;
+    }
+    #info {
+        margin-top: 10%;
+    }
+}
