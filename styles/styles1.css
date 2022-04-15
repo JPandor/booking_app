@@ -1,97 +1,102 @@
-@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap');
-
 body {
     background-image: url('../images/blue_bg.jpg');
-    font-size: large;
-    margin-left: 5%;
-    margin-right: 6%;
-    font-family: 'Luxurious Roman', cursive;
-}
-
-h1 {
+    background-repeat: no-repeat;
+    background-size: cover;
     text-align: center;
-}
-
-.container{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.media-card {
-    width: 50%;
-    text-align: center;
-    align-items: center;
-}
-
-
-.media-body{
-    max-width: 400px;
-    background-color: white;
-    padding: 3px;
-    border: black solid 2px;
-    border-radius: 12px;
-    margin: auto;
-}
-
-img {
-    width: 250px;
-    height: 200px;
-    border: black solid 2px;
-    border-radius: 12px;
-}
-
-form{
-    background-color: white;
-    font-size: large;
-    border-radius: 12px;
-    padding: 1%;
-    box-shadow: 5px 10px 8px #888888;
-    margin-left: 5%;
-    margin-right: 6%;
-    text-align: start;
-    font-weight: bold;
     margin-top: 3%;
 }
 
-select {
-    display: block;
-    width: 100%;
-    min-height: 35px;
-    margin: auto;
-    border-radius: 12px;
-    border: 2px solid #4C8994;
-    margin-bottom: 1%;
-    margin-top: 10px;
-    margin-bottom: 10px;
+h1 {
+    padding-top: 3%;
+    padding-bottom: 0.5%;
+    font-size: 2.5rem;
 }
 
-input[type = submit] {
-    margin-top: 30px;
-    min-height: 35px;
-    width: 100%;
-    min-height: 30px;
-    margin: auto;
-    border-radius: 12px;
-    border: 2px solid #4C8994;
-    margin-top: 10px;
-    margin-bottom: 30px;
+ul {
+    list-style-type: none;
+}
+#container{
+    margin-left: 12%;
+    margin-right: 12%;
 }
 
-input[type = submit]:hover {
-    background-color: #ccc;
-    color: black;
-    transition: 0.5s ease-in;
+img {
+    height: 380px;
 }
 
-#info {
-    font-size: larger;
-    font-weight: bold;
-    text-align: center;
+form {
+    background-color: white;
+    font-size: large;
+    border-radius: 5px;
+    padding: 2%;
+    box-shadow: 5px 10px 8px #888888;
+    margin-left: 12%;
+    margin-right: 12%;
+    margin-bottom: 5%;
+    margin-top: 6%;
+    text-align: start;
+}
+
+h3 {
+    margin-top: 6%;
     margin-bottom: 3%;
 }
 
 li {
-    list-style-type: none;
+    font-size: 16px;
+}
+
+hr {
+    height: 2px;
+    margin-bottom: 1%;
+}
+
+#info {
+    font-size: x-large;
+    width: 40%;
+    margin: auto;
+}
+
+.hotel-card {
+    width: 45%;
+}
+
+h3 {
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+@media screen and (max-width: 1400px) {
+    #info {
+        width: 80%;
+    }
+
+    img {
+        height: 30vh;
+    }
+}
+
+
+@media screen and (max-width: 1100px) {
+    img {
+        height: 25vh;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+    img {
+        height: auto;
+        width: 70%;
+    }
+    #container{
+        display: flex;
+        flex-direction: column;
+    }
+    form {
+        margin-bottom: 10%;
+    }
+    #info {
+        margin-top: 10%;
+    }
 }

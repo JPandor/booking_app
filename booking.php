@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CSS only Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles/styles1.css">
     <title>Booking</title>
 </head>
-<body>
+<body class='text-center'>
     
 
 
 <?php 
 session_start();
-//get user details and process them
+//get user details and process them with a class
 class User {
     public $user_hotel;
     public $first_name;
@@ -69,6 +73,7 @@ class User {
     }
 
     public function compare(){
+        //looping through the multidimensional array to get the amount
         $count = 0;
         foreach ($this->hotel_arr as $value){
             $count = $count + 1;
@@ -76,16 +81,20 @@ class User {
         $key_count = $count - 2;
         $count = $count - 1;
     
-            if ($this->key == $count){
-                $this->compare_key = $key_count;
-                $this->compare_hotel = $this->hotel_arr[$this->compare_key]['name'];
-            }else {
-                $this->compare_key = $this->key + 1; 
-                $this->compare_hotel = $this->hotel_arr[$this->compare_key]['name'];
-            }
+        // end case for the hotel array
+        if ($this->key == $count){
+            $this->compare_key = $key_count;
+            $this->compare_hotel = $this->hotel_arr[$this->compare_key]['name'];
+        // all other cases
+        }else {
+            $this->compare_key = $this->key + 1; 
+            $this->compare_hotel = $this->hotel_arr[$this->compare_key]['name'];
+        }
             
     }
+
     public function book (){
+        //storing relevent data needed in session superglobal
         $_SESSION['first_name'] = $this->first_name;
         $_SESSION['last_name'] = $this->last_name;
         $_SESSION['email'] = $this->email;
@@ -101,21 +110,23 @@ class User {
 //instantiate user class
 $user1 = new User ($_POST['hotel'], $_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['check_in'], $_POST['check_out'], $_POST['amount_days']);
 
-
 ?>
-<div id="info">
-    <h1>Hello <?php echo $user1->first_name . " " . $user1->last_name?> </h1>
-    <p>These are your entered details: </p>
+<!-- User details -->
+<div class='card pt-2 pb-2 mb-5' id="info">
+    <h1 class="card-title">Hello <?php echo $user1->first_name . " " . $user1->last_name?> </h1>
+    <hr>
+ <p class="card-text">These are your entered details: </p>
     <ul>
-        <li> Email: <?php echo $user1->email ?></li>
-        <li> Hotel: <?php echo $user1->user_hotel ?></li>
-        <li> Check-in: <?php echo $user1->check_in ?></li>
-        <li> Check-out: <?php echo $user1->check_out ?></li>
-        <li> Total nights: <?php echo $user1->amount_days ?></li>
-    </ul>
-    <h3>We've found the best hotels for you based off your search. Compare these 2 hotels and make your pick!</h3>
+        <li class="card-text"> Email: <?php echo $user1->email ?></li>
+        <li class="card-text"> Hotel: <?php echo $user1->user_hotel ?></li>
+        <li class="card-text"> Check-in: <?php echo $user1->check_in ?></li>
+        <li class="card-text"> Check-out: <?php echo $user1->check_out ?></li>
+        <li class="card-text"> Total nights: <?php echo $user1->amount_days ?></li>
+    </ul> 
+   
 </div>
 
+<h3>We've found the best hotels for you based off your search. Compare these 2 hotels and make your pick!</h3>
 <?php
 
 $user1->getHotelArray();
@@ -123,16 +134,17 @@ $user1->getHotelArray();
 $user1->getHotelDeets($user1->user_hotel);
 
 ?> 
-<div class='container'>
-    <div class='media-card'>
-        <div class='media-head'>
-            <img src='<?php echo $user1->image?>' width='250px' height='200px'>
+<!-- Hotel details card -->
+<div class='card-group' id='container'>
+    <div class='card m-4' class='hotel-card'>
+        <div>
+            <img class='card-img-top' src='<?php echo $user1->image?>'>
         </div>
-        <div class='media-body'>
-            <h2> <?php echo $user1->name?> </h2>
-            <p> <?php echo $user1->name?> has the following features: </p>
-            <p> <?php echo $user1->features?> </p>
-            <h3>Your price for <?php echo $user1->amount_days?> night/s is <?php echo $user1->price?></h3>
+        <div class='card-body'>
+            <h2 class='card-title'> <?php echo $user1->name?> </h2>
+            <p class="card-text"> <?php echo $user1->name?> has the following features: </p>
+            <p class="card-text"> <?php echo $user1->features?> </p>
+            <h3 class="card-text">Your price for <?php echo $user1->amount_days?> night/s is R<?php echo $user1->price?>.00</h3>
         </div>
     </div>
 
@@ -143,16 +155,16 @@ $user1->compare();
 $user1->getHotelDeets($user1->compare_hotel);
 
 ?>
-
-    <div class='media-card'>
-        <div class='media-head'>
-            <img src='<?php echo $user1->image?>' max-width='250px' max-height='200px'>
+    <!-- Hotel details card -->
+    <div class='card m-4' class='hotel-card'>
+        <div>
+            <img class='card-img-top' src='<?php echo $user1->image?>'>
         </div>
-        <div class='media-body'>
-            <h2> <?php echo $user1->name?> </h2>
-            <p> <?php echo $user1->name?> has the following features: </p>
-            <p> <?php echo $user1->features?> </p>
-            <h3>Your price for <?php echo $user1->amount_days?> night/s is <?php echo $user1->price?></h3>
+        <div class='card-body'>
+            <h2 class='card-title'> <?php echo $user1->name?> </h2>
+            <p class="card-text"> <?php echo $user1->name?> has the following features: </p>
+            <p class="card-text"> <?php echo $user1->features?> </p>
+            <h3 class="card-text">Your price for <?php echo $user1->amount_days?> night/s is R<?php echo $user1->price?>.00</h3>
         </div>
     </div>
 </div>
@@ -164,15 +176,16 @@ $user1->book();
 ?>
 
 <form action='email.php' method='get'>
-        <label for='hotel'>Choose your hotel</label><br>
-        <select id='hotel' name='hotel' required>
+        <label for='hotel' class="form-label text-left">Choose your hotel</label><br>
+        <select id='hotel' name='hotel' required class="form-select">
         <option value='<?php echo $user1->user_hotel?>'><?php echo $user1->user_hotel?></option>
         <option value='<?php echo $user1->compare_hotel?>'><?php echo $user1->compare_hotel?></option>
         </select>
-        <label for='book'></label>
-                <input type='submit' id='submit' name='submit'>
-        </form>
+        <button type="submit" class="btn btn-info btn-block input-block-level" style="width: 100%; margin-top: 2%;">Submit</button>
+</form>
 
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
 
